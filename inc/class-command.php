@@ -73,14 +73,12 @@ class Command {
 		// Make sure our file exists before continuing on.
 		if ( file_exists( $this->path ) ) 
 		{
-			\WP_CLI::log( 'Folder exists. Continuing.' );
-
 			// Call our Iterator to open the files and perform the string replace on the filesystem
 			new Iterator( $this->replace, $this->path );
 
 		}
 
-		\WP_CLI::success("Created new theme: " . $this->slug );
+		\WP_CLI::success('Created new theme: ' . $this->replace['slug'] );
 	}
 	/**
 	 * Returns an array for slug, full
