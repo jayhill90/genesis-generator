@@ -14,7 +14,7 @@ class Command {
 
 	/*
 	 * Empty array that holds transformed slug and other replacements
-	 *
+	 * 
 	 * @var array
 	 */
 	protected $replace = [];
@@ -74,24 +74,25 @@ class Command {
 	 */
 	public function __invoke( $args, $assoc_args ) {
 
-		$this->replace           = $this->split( sanitize_text_field( $args[0] ) );
-		$this->replace['author'] = sanitize_text_field( $assoc_args['author'] );
+		$this->replace = $this->split( sanitize_text_field( $args[0] ));
+		$this->replace['author']  = sanitize_text_field( $assoc_args['author'] );
 		$this->replace['uri']    = esc_url_raw( $assoc_args['uri'] );
 
 		// Extract The Genesis Sample zip file into /tmp/<theme-slug>.
 		$this->file = new Zipper( $this->replace['slug'] );
-		$this->path = '/tmp/' . $this->replace['slug'];
+		$this->path = get_theme_root() . '/' . $this->replace['slug'];
 
 		// Make sure our file exists before continuing on.
-		if ( file_exists( $this->path ) ) {
-
+		if ( file_exists( $this->path ) ) 
+		{
 			\WP_CLI::log( 'Folder exists. Continuing.' );
 
 			// Call our Iterator to open the files and perform the string replace on the filesystem
 			new Iterator( $this->replace, $this->path );
+
 		}
 
-		\WP_CLI::success( $this->author . ' ' . $this->uri );
+		\WP_CLI::success("Created new theme: " );
 	}
 	/**
 	 * Returns an array for slug, full
