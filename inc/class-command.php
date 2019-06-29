@@ -48,7 +48,9 @@ class Command {
 		if ( file_exists ( $this->path ) ) {
 			\WP_CLI::log( "Folder exists. Continuing.");
 			$this->theme_name = $this->split( $this->slug );
-
+			// Add StudioPress and studiopress.com to array to search and replace
+			$this->theme_name['author'] = $this->author;
+			$this->theme_name['uri'] = $this->uri;
 			// Call our Iterator to open the files and perform the string replace
 			new Iterator( $this->theme_name, $this->path );
 

@@ -1,10 +1,10 @@
 <?php
 /**
 * Plugin Name:     Genesis Generator
-* Plugin URI:      PLUGIN SITE HERE
-* Description:     PLUGIN DESCRIPTION HERE
-* Author:          YOUR NAME HERE
-* Author URI:      YOUR SITE HERE
+* Plugin URI:      https://wpdev.life
+* Description:     Adds a WP-CLI command to scaffold a Genesis Sample theme
+* Author:          Jay Hill
+* Author URI:      https://wpdev.life
 * Text Domain:     genesis-generator
 * Domain Path:     /languages
 * Version:         0.1.0
@@ -18,7 +18,6 @@ use \WP_CLI;
 if ( !defined( 'WP_CLI' ) ) {
 	return;
 } 
-
 
 spl_autoload_register(
 	function ( $class ) {
@@ -41,7 +40,6 @@ spl_autoload_register(
 		}
 	}
 );
-
 
 $scaffold = new Command();
 
