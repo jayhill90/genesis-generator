@@ -27,7 +27,8 @@ class Iterator {
 		'genesis_sample',
 		'www.studiopress.com',
 		'StudioPress',
-		'This is the sample theme created for the Genesis Framework.'
+		'This is the sample theme created for the Genesis Framework.',
+		'demo.studiopress.com'
 	];
 	/**
 	 * Stores the replaced string to set per file. 
