@@ -31,6 +31,6 @@ Then open up WP CLI and run `wp scaffold genesis theme-slug --author=authorname 
 
 == Changelog ==
 
-= 0.0.1 =
+= 0.1.0 = 6/28/2019
 * Initial base functionality.
 
