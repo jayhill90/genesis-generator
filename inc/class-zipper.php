@@ -19,6 +19,7 @@ class Zipper {
 		if ( $result ) {
 			$zip->extractTo("/tmp");
 			$zip->close();
+			unlink( $$this->tmp );
 			$rename = rename( '/tmp/genesis-sample-master/', '/tmp' . '/' . $slug );
 			if ( $rename ) {
 				\WP_CLI::log( "Renamed temp directory") ;
