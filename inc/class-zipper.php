@@ -19,13 +19,10 @@ class Zipper {
 		if ( $result ) {
 			$zip->extractTo( get_theme_root() );
 			$zip->close();
-			
 			$rename = rename( get_theme_root() . '/genesis-sample-master', get_theme_root() . '/' . $slug );
-			if ( $rename ) {
-				\WP_CLI::log( "Renamed temp directory") ;
-			}
-			else {
+			if ( !$rename ) {
 				return \WP_CLI::error( "Failed to rename temp directory" );
+
 			}
 		}
 		else {
