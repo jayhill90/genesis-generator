@@ -9,11 +9,14 @@ class Iterator {
 		'genesis-sample',
 		'Genesis Sample',
 		'genesis_sample',
+		'studiopress.com',
+		'StudioPress',
 	];
 	protected $meta;
-
+	protected $replace;
 
 	function __construct( array $slug, string $path ) {
+		
 		$this->open($slug, $path);
 		
 	}
@@ -34,13 +37,10 @@ class Iterator {
 					$this->file = file_put_contents( $iterator->getPathname(), $this->meta);
 				}
 				else {
+
 				}
 			}
 		}
-
-		// Replace on current file 
-		//$this->replace_genesis( $slug, $this->file);
-
 	}
 
 	function replace_genesis( $replace, $file ) {
