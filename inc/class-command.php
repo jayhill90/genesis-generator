@@ -41,16 +41,23 @@ class Command {
 	 * : The slug of the new theme.
 	 *
 	 * [--author=<author>]
-	 * : author
+	 * : Author Name
 	 * ---
-	 * default:
+	 * default: Your Name
 	 * ---
 	 *
 	 * [--uri=<uri>]
-	 * : uri
+	 * : Author URI
+	 * ---
+	 * default: domain.test
+	 * ---
+	 * 
+	 * [--description=<description>]
+	 * : Theme description
 	 * ---
 	 * default:
 	 * ---
+	 * 
 	 * ## EXAMPLES
 	 *
 	 *     wp scaffold genesis my-theme
@@ -65,7 +72,7 @@ class Command {
 		$this->replace = $this->split( sanitize_text_field( $args[0] ));
 		$this->replace['uri']    = sanitize_text_field( $assoc_args['uri'] );
 		$this->replace['author']  = sanitize_text_field( $assoc_args['author'] );
-
+		$this->replace['description'] = sanitize_text_field( $assoc_args['description' ] );
 		// Extract The Genesis Sample zip file into /tmp/<theme-slug>.
 		$this->file = new Zipper( $this->replace['slug'] );
 		$this->path = get_theme_root() . '/' . $this->replace['slug'];
