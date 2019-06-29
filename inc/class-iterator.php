@@ -29,7 +29,7 @@ class Iterator {
 		'StudioPress',
 	];
 	/**
-	 * This stores the replaced string to set. 
+	 * This stores the replaced string to set.
 	 *
 	 * @var string
 	 */
@@ -40,7 +40,7 @@ class Iterator {
 	 * @var array
 	 */
 	protected $replace;
-	
+
 	public function __construct( array $slug, string $path ) {
 
 		$this->open( $slug, $path );
@@ -49,7 +49,7 @@ class Iterator {
 	/**
 	 * Opens all the files for the theme and calls the replace function
 	 *
-	 * @param array $slug
+	 * @param array  $slug
 	 * @param string $path
 	 * @return void
 	 */
@@ -69,7 +69,7 @@ class Iterator {
 					$this->meta = $this->replace_genesis( $slug, $this->file );
 					$this->file = file_put_contents( $iterator->getPathname(), $this->meta );
 				} else {
-					
+
 				}
 			}
 		}
@@ -77,7 +77,7 @@ class Iterator {
 	/**
 	 * Replaces all references from $search with $replace
 	 *
-	 * @param array $replace The array of strings to replace
+	 * @param array  $replace The array of strings to replace
 	 * @param string $file The string to run function on
 	 * @return string
 	 */

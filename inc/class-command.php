@@ -11,15 +11,10 @@ namespace GenesisGenerator;
  * The WP_CLI Command class
  */
 class Command {
-	/**
-	 * Argument passed in as $args
-	 *
-	 * @var string
-	 */
-	protected $slug;
-	/** 
+
+	/*
 	 * Empty array that holds transformed slug and other replacements
-	 * 
+	 *
 	 * @var array
 	 */
 	protected $replace = [];
@@ -78,22 +73,22 @@ class Command {
 	 * @param array $assoc_args options for the command to be ran.
 	 */
 	public function __invoke( $args, $assoc_args ) {
-		$this->slug   = sanitize_text_field( $args[0] );
-		$this->author = sanitize_text_field( $assoc_args['author'] );
-		$this->uri    = esc_url_raw( $assoc_args['uri'] );
+
+		$this->replace           = $this->split( sanitize_text_field( $args[0] ) );
+		$this->replace['author'] = sanitize_text_field( $assoc_args['author'] );
+		$this->replace['uri']    = esc_url_raw( $assoc_args['uri'] );
+
 		// Extract The Genesis Sample zip file into /tmp/<theme-slug>.
-		$this->file = new Zipper( $this->slug );
-		$this->path = '/tmp/' . $this->slug;
+		$this->file = new Zipper( $this->replace['slug'] );
+		$this->path = '/tmp/' . $this->replace['slug'];
+
 		// Make sure our file exists before continuing on.
 		if ( file_exists( $this->path ) ) {
-			\WP_CLI::log( 'Folder exists. Continuing.' );
-			$this->replace = $this->split( $this->slug );
-			// Add StudioPress and studiopress.com to array to search and replace.
-			$this->replace['author'] = $this->author;
-			$this->replace['uri']    = $this->uri;
-			// Call our Iterator to open the files and perform the string replace.
-			new Iterator( $this->replace, $this->path );
 
+			\WP_CLI::log( 'Folder exists. Continuing.' );
+
+			// Call our Iterator to open the files and perform the string replace on the filesystem
+			new Iterator( $this->replace, $this->path );
 		}
 
 		\WP_CLI::success( $this->author . ' ' . $this->uri );
