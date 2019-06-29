@@ -5,16 +5,16 @@
  * @since 0.1.0
  * @package GenesisGenerator
  */
+
 namespace GenesisGenerator;
 
 /**
  * The WP_CLI Command class
  */
 class Command {
-
-	/*
+	/**
 	 * Empty array that holds transformed slug and other replacements
-	 * 
+	 *
 	 * @var array
 	 */
 	protected $replace = [];
@@ -51,19 +51,19 @@ class Command {
 	 * ---
 	 * default: domain.test
 	 * ---
-	 * 
+	 *
 	 * [--description=<description>]
 	 * : Theme description
 	 * ---
 	 * default:
 	 * ---
-	 * 
+	 *
 	 * [--theme_uri=<theme-uri>]
 	 * : Theme URI
 	 * ---
 	 * default:
 	 * ---
-	 * 
+	 *
 	 * ## EXAMPLES
 	 *
 	 *     wp scaffold genesis my-theme --author="Jay Hill" --uri="wpdev.life" --description="My awesome theme" --theme_uri=testinproduction.systems
@@ -75,24 +75,23 @@ class Command {
 	 */
 	public function __invoke( $args, $assoc_args ) {
 
-		$this->replace = $this->split( sanitize_text_field( $args[0] ));
-		$this->replace['uri']    = sanitize_text_field( $assoc_args['uri'] );
-		$this->replace['author']  = sanitize_text_field( $assoc_args['author'] );
-		$this->replace['description'] = sanitize_text_field( $assoc_args['description' ] );
-		$this->replace['theme_uri'] = sanitize_text_field( $assoc_args['theme_uri']);
+		$this->replace                = $this->split( sanitize_text_field( $args[0] ) );
+		$this->replace['uri']         = sanitize_text_field( $assoc_args['uri'] );
+		$this->replace['author']      = sanitize_text_field( $assoc_args['author'] );
+		$this->replace['description'] = sanitize_text_field( $assoc_args['description'] );
+		$this->replace['theme_uri']   = sanitize_text_field( $assoc_args['theme_uri'] );
 		// Extract The Genesis Sample zip file into /tmp/<theme-slug>.
 		$this->file = new Zipper( $this->replace['slug'] );
 		$this->path = get_theme_root() . '/' . $this->replace['slug'];
 
 		// Make sure our file exists before continuing on.
-		if ( file_exists( $this->path ) ) 
-		{
-			// Call our Iterator to open the files and perform the string replace on the filesystem
+		if ( file_exists( $this->path ) ) {
+			// Call our Iterator to open the files and perform the string replace on the filesystem.
 			new Iterator( $this->replace, $this->path );
 
 		}
 
-		\WP_CLI::success('Created new theme: ' . $this->replace['slug'] );
+		\WP_CLI::success( 'Created new theme: ' . $this->replace['slug'] );
 	}
 	/**
 	 * Returns an array for slug, full

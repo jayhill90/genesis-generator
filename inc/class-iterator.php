@@ -8,6 +8,9 @@
 
 namespace GenesisGenerator;
 
+/**
+ * Iterate through our files and handle search and replaces in files.
+ */
 class Iterator {
 	/**
 	 * The opened file's contents
@@ -28,10 +31,10 @@ class Iterator {
 		'www.studiopress.com',
 		'StudioPress',
 		'This is the sample theme created for the Genesis Framework.',
-		'demo.studiopress.com'
+		'demo.studiopress.com',
 	];
 	/**
-	 * Stores the replaced string to set per file. 
+	 * Stores the replaced string to set per file.
 	 *
 	 * @var string
 	 */
@@ -42,7 +45,12 @@ class Iterator {
 	 * @var array
 	 */
 	protected $replace;
-	
+	/**
+	 * Construct the Iterator instance
+	 *
+	 * @param array  $slug List of strings to replace.
+	 * @param string $path Path of theme.
+	 */
 	public function __construct( array $slug, string $path ) {
 
 		$this->open( $slug, $path );
@@ -51,8 +59,8 @@ class Iterator {
 	/**
 	 * Opens all the files for the theme and calls the replace function
 	 *
-	 * @param array $slug
-	 * @param string $path
+	 * @param array  $slug List of strings.
+	 * @param string $path Directory we need to be in.
 	 * @return void
 	 */
 	private function open( $slug, $path ) {
@@ -68,7 +76,7 @@ class Iterator {
 					$this->meta = $this->replace_genesis( $slug, $this->file );
 					$this->file = file_put_contents( $iterator->getPathname(), $this->meta );
 				} else {
-
+					continue;
 				}
 			}
 		}
@@ -76,8 +84,8 @@ class Iterator {
 	/**
 	 * Replaces all references from $search with $replace
 	 *
-	 * @param array $replace The array of strings to replace
-	 * @param string $file The string to run function on
+	 * @param array  $replace The array of strings to replace.
+	 * @param string $file The string to run function on.
 	 * @return string
 	 */
 	private function replace_genesis( $replace, $file ) {
