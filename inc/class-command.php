@@ -60,7 +60,7 @@ class Command {
 	 * 
 	 * ## EXAMPLES
 	 *
-	 *     wp scaffold genesis my-theme
+	 *     wp scaffold genesis my-theme --author="Jay Hill" --uri="wpdev.life" --description="My awesome theme"
 	 *
 	 * @when after_wp_load
 	 *
