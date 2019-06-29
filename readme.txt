@@ -19,6 +19,8 @@ This plugin adds a WP CLI command to be able to scaffold a Genesis Sample theme.
 
 Upload to your plugins folder and activate. 
 
+Then open up WP CLI and run `wp scaffold genesis theme-slug --author=authorname --uri=website.com` 
+
 == Frequently Asked Questions ==
 
 
