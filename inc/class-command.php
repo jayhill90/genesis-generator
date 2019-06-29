@@ -25,18 +25,6 @@ class Command {
 	 */
 	protected $path;
 	/**
-	 * Author from $assoc_args
-	 *
-	 * @var string
-	 */
-	protected $author;
-	/**
-	 * URI of plugin
-	 *
-	 * @var [type]
-	 */
-	protected $uri;
-	/**
 	 * Handle of the zip file
 	 *
 	 * @var Zipper
