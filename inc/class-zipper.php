@@ -17,15 +17,12 @@ class Zipper {
 		$result = $zip->open( $this->tmp );
 
 		if ( $result ) {
-			$zip->extractTo("/tmp");
+			$zip->extractTo( get_theme_root() );
 			$zip->close();
-			unlink( $$this->tmp );
-			$rename = rename( '/tmp/genesis-sample-master/', '/tmp' . '/' . $slug );
-			if ( $rename ) {
-				\WP_CLI::log( "Renamed temp directory") ;
-			}
-			else {
+			$rename = rename( get_theme_root() . '/genesis-sample-master', get_theme_root() . '/' . $slug );
+			if ( !$rename ) {
 				return \WP_CLI::error( "Failed to rename temp directory" );
+
 			}
 		}
 		else {

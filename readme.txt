@@ -30,7 +30,10 @@ Then open up WP CLI and run `wp scaffold genesis theme-slug --author=authorname 
 
 
 == Changelog ==
+= 0.1.2 =
+Ensured theme is installed locally.
+Minor bug fixes.
 
-= 0.0.1 =
+= 0.1.0 = 
 * Initial base functionality.
 

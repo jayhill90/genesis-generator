@@ -29,7 +29,7 @@ class Iterator {
 		'StudioPress',
 	];
 	/**
-	 * This stores the replaced string to set.
+	 * This stores the replaced string to set per file. 
 	 *
 	 * @var string
 	 */
@@ -40,7 +40,7 @@ class Iterator {
 	 * @var array
 	 */
 	protected $replace;
-
+	
 	public function __construct( array $slug, string $path ) {
 
 		$this->open( $slug, $path );
@@ -49,13 +49,11 @@ class Iterator {
 	/**
 	 * Opens all the files for the theme and calls the replace function
 	 *
-	 * @param array  $slug
+	 * @param array $slug
 	 * @param string $path
 	 * @return void
 	 */
 	private function open( $slug, $path ) {
-
-		\WP_CLI::log( $path );
 		if ( is_dir( $path ) ) {
 			$iterator = new \RecursiveIteratorIterator(
 				new \RecursiveDirectoryIterator( $path, \RecursiveDirectoryIterator::SKIP_DOTS ),
@@ -64,12 +62,11 @@ class Iterator {
 
 			foreach ( $iterator as $file ) {
 				if ( $file->isFile() ) {
-					\WP_CLI::log( var_dump( $iterator->getPathName() ) );
 					$this->file = file_get_contents( $iterator->getPathName() );
 					$this->meta = $this->replace_genesis( $slug, $this->file );
 					$this->file = file_put_contents( $iterator->getPathname(), $this->meta );
 				} else {
-
+					
 				}
 			}
 		}
@@ -77,7 +74,7 @@ class Iterator {
 	/**
 	 * Replaces all references from $search with $replace
 	 *
-	 * @param array  $replace The array of strings to replace
+	 * @param array $replace The array of strings to replace
 	 * @param string $file The string to run function on
 	 * @return string
 	 */
