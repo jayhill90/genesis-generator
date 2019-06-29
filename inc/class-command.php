@@ -63,8 +63,8 @@ class Command {
 	public function __invoke( $args, $assoc_args ) {
 
 		$this->replace = $this->split( sanitize_text_field( $args[0] ));
+		$this->replace['uri']    = sanitize_text_field( $assoc_args['uri'] );
 		$this->replace['author']  = sanitize_text_field( $assoc_args['author'] );
-		$this->replace['uri']    = esc_url_raw( $assoc_args['uri'] );
 
 		// Extract The Genesis Sample zip file into /tmp/<theme-slug>.
 		$this->file = new Zipper( $this->replace['slug'] );
@@ -95,5 +95,3 @@ class Command {
 	}
 
 }
-
-

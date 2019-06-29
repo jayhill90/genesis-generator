@@ -25,17 +25,17 @@ class Iterator {
 		'genesis-sample',
 		'Genesis Sample',
 		'genesis_sample',
-		'studiopress.com',
+		'www.studiopress.com',
 		'StudioPress',
 	];
 	/**
-	 * This stores the replaced string to set per file. 
+	 * Stores the replaced string to set per file. 
 	 *
 	 * @var string
 	 */
 	protected $meta;
 	/**
-	 * List of replacement strings for the files
+	 * Array of replacement strings for the files
 	 *
 	 * @var array
 	 */
@@ -66,7 +66,7 @@ class Iterator {
 					$this->meta = $this->replace_genesis( $slug, $this->file );
 					$this->file = file_put_contents( $iterator->getPathname(), $this->meta );
 				} else {
-					
+
 				}
 			}
 		}
