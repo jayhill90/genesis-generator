@@ -12,11 +12,35 @@ namespace GenesisGenerator;
  */
 class Command {
 
-	protected $slug;
-	protected $theme_name = [];
+	/*
+	 * Empty array that holds transformed slug and other replacements
+	 *
+	 * @var array
+	 */
+	protected $replace = [];
+	/**
+	 * File path to extract to
+	 *
+	 * @var string
+	 */
 	protected $path;
+	/**
+	 * Author from $assoc_args
+	 *
+	 * @var string
+	 */
 	protected $author;
+	/**
+	 * URI of plugin
+	 *
+	 * @var [type]
+	 */
 	protected $uri;
+	/**
+	 * Handle of the zip file
+	 *
+	 * @var Zipper
+	 */
 	private $file;
 
 
@@ -49,22 +73,22 @@ class Command {
 	 * @param array $assoc_args options for the command to be ran.
 	 */
 	public function __invoke( $args, $assoc_args ) {
-		$this->slug   = sanitize_text_field( $args[0] );
-		$this->author = sanitize_text_field( $assoc_args['author'] );
-		$this->uri    = esc_url_raw( $assoc_args['uri'] );
+
+		$this->replace           = $this->split( sanitize_text_field( $args[0] ) );
+		$this->replace['author'] = sanitize_text_field( $assoc_args['author'] );
+		$this->replace['uri']    = esc_url_raw( $assoc_args['uri'] );
+
 		// Extract The Genesis Sample zip file into /tmp/<theme-slug>.
-		$this->file = new Zipper( $this->slug );
-		$this->path = '/tmp/' . $this->slug;
+		$this->file = new Zipper( $this->replace['slug'] );
+		$this->path = '/tmp/' . $this->replace['slug'];
+
 		// Make sure our file exists before continuing on.
 		if ( file_exists( $this->path ) ) {
-			\WP_CLI::log( 'Folder exists. Continuing.' );
-			$this->theme_name = $this->split( $this->slug );
-			// Add StudioPress and studiopress.com to array to search and replace.
-			$this->theme_name['author'] = $this->author;
-			$this->theme_name['uri']    = $this->uri;
-			// Call our Iterator to open the files and perform the string replace.
-			new Iterator( $this->theme_name, $this->path );
 
+			\WP_CLI::log( 'Folder exists. Continuing.' );
+
+			// Call our Iterator to open the files and perform the string replace on the filesystem
+			new Iterator( $this->replace, $this->path );
 		}
 
 		\WP_CLI::success( $this->author . ' ' . $this->uri );
@@ -73,7 +97,7 @@ class Command {
 	 * Returns an array for slug, full
 	 *
 	 * @param string $slug The slug to pass in.
-	 * @return array An array of each variation of the slug for replcaements
+	 * @return array An array of each variation of the slug for replacements
 	 */
 	private function split( string $slug ) {
 		$new['slug']       = $slug;
