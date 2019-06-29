@@ -35,6 +35,7 @@ Open up WP CLI and run a version of:
 
 
 == Changelog ==
+
 = 0.4.0 = 
 Added theme_uri author_uri description and other args for command.
 Expanded documentation.
@@ -44,6 +45,6 @@ Cleaned up more code.
 Ensured theme is installed locally.
 Minor bug fixes.
 
-= 0.0.1 =
+= 0.1.0 = 
 * Initial base functionality.
 
