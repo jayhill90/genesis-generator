@@ -12,14 +12,18 @@ This plugin adds a WP CLI command to be able to scaffold a Genesis Sample theme.
 
 == Description ==
 
-### Work In Progress
+This plugin adds a WP-CLI command to be able to generate a Genesis Sample theme, with all of the replacements being complete.
+This is a work in progress, and is meant as a proof of concept on how valuable this could be to Genesis core. 
 
+I value feedback so if there's anything amiss feel free to open up an issue or hit me on twitter @wpdevlife. 
 
 == Installation ==
 
 Upload to your plugins folder and activate. 
 
-Then open up WP CLI and run `wp scaffold genesis theme-slug --author=authorname --uri=website.com` 
+Then open up WP CLI and run:
+
+`wp scaffold genesis my-theme --author="Jay Hill" --uri="wpdev.life" --description="My awesome theme" --theme_uri="testinproduction.systems"`
 
 == Frequently Asked Questions ==
 
