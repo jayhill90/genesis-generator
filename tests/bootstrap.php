@@ -2,7 +2,7 @@
 /**
  * PHPUnit bootstrap file
  *
- * @package Genesis_Generator
+ * @package GenesisGenerator
  */
 
 $_tests_dir = getenv( 'WP_TESTS_DIR' );
