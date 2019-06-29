@@ -1,0 +1,34 @@
+=== Genesis Generator ===
+Contributors: (this should be a list of wordpress.org userid's)
+Donate link: https://example.com/
+Tags: comments, spam
+Requires at least: 4.5
+Tested up to: 5.2.1
+Stable tag: 0.1.0
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+This plugin adds a WP CLI command to be able to scaffold a Genesis Sample theme. 
+
+== Description ==
+
+### Work In Progress
+
+
+== Installation ==
+
+Upload to your plugins folder and activate. 
+
+== Frequently Asked Questions ==
+
+
+
+== Screenshots ==
+
+
+
+== Changelog ==
+
+= 0.0.1 =
+* Initial base functionality.
+
