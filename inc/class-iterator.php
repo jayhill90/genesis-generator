@@ -29,7 +29,7 @@ class Iterator {
 		'StudioPress',
 	];
 	/**
-	 * This stores the replaced string to set. 
+	 * This stores the replaced string to set per file. 
 	 *
 	 * @var string
 	 */
@@ -54,8 +54,6 @@ class Iterator {
 	 * @return void
 	 */
 	private function open( $slug, $path ) {
-
-		\WP_CLI::log( $path );
 		if ( is_dir( $path ) ) {
 			$iterator = new \RecursiveIteratorIterator(
 				new \RecursiveDirectoryIterator( $path, \RecursiveDirectoryIterator::SKIP_DOTS ),
@@ -64,7 +62,6 @@ class Iterator {
 
 			foreach ( $iterator as $file ) {
 				if ( $file->isFile() ) {
-					\WP_CLI::log( var_dump( $iterator->getPathName() ) );
 					$this->file = file_get_contents( $iterator->getPathName() );
 					$this->meta = $this->replace_genesis( $slug, $this->file );
 					$this->file = file_put_contents( $iterator->getPathname(), $this->meta );
@@ -72,7 +69,6 @@ class Iterator {
 					
 				}
 			}
-			copy( $path, get_theme_direcotry() . $slug);
 		}
 	}
 	/**

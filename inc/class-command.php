@@ -80,7 +80,7 @@ class Command {
 
 		}
 
-		\WP_CLI::success("Created new theme: " );
+		\WP_CLI::success("Created new theme: " . $this->slug );
 	}
 	/**
 	 * Returns an array for slug, full
