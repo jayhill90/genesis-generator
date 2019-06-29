@@ -3,47 +3,49 @@ module.exports = function( grunt ) {
 	'use strict';
 
 	// Project configuration
-	grunt.initConfig( {
+	grunt.initConfig(
+		{
 
-		pkg: grunt.file.readJSON( 'package.json' ),
+			pkg: grunt.file.readJSON( 'package.json' ),
 
-		addtextdomain: {
-			options: {
-				textdomain: 'genesis-generator',
-			},
-			update_all_domains: {
+			addtextdomain: {
 				options: {
-					updateDomains: true
+					textdomain: 'genesis-generator',
 				},
-				src: [ '*.php', '**/*.php', '!\.git/**/*', '!bin/**/*', '!node_modules/**/*', '!tests/**/*' ]
-			}
-		},
-
-		wp_readme_to_markdown: {
-			your_target: {
-				files: {
-					'README.md': 'readme.txt'
+				update_all_domains: {
+					options: {
+						updateDomains: true
+					},
+					src: [ '*.php', '**/*.php', '!\.git/**/*', '!bin/**/*', '!node_modules/**/*', '!tests/**/*' ]
 				}
 			},
-		},
 
-		makepot: {
-			target: {
-				options: {
-					domainPath: '/languages',
-					exclude: [ '\.git/*', 'bin/*', 'node_modules/*', 'tests/*' ],
-					mainFile: 'genesis-generator.php',
-					potFilename: 'genesis-generator.pot',
-					potHeaders: {
-						poedit: true,
-						'x-poedit-keywordslist': true
-					},
-					type: 'wp-plugin',
-					updateTimestamp: true
+			wp_readme_to_markdown: {
+				your_target: {
+					files: {
+						'README.md': 'readme.txt'
+					}
+				},
+			},
+
+			makepot: {
+				target: {
+					options: {
+						domainPath: '/languages',
+						exclude: [ '\.git/*', 'bin/*', 'node_modules/*', 'tests/*' ],
+						mainFile: 'genesis-generator.php',
+						potFilename: 'genesis-generator.pot',
+						potHeaders: {
+							poedit: true,
+							'x-poedit-keywordslist': true
+						},
+						type: 'wp-plugin',
+						updateTimestamp: true
+					}
 				}
-			}
-		},
-	} );
+			},
+		}
+	);
 
 	grunt.loadNpmTasks( 'grunt-wp-i18n' );
 	grunt.loadNpmTasks( 'grunt-wp-readme-to-markdown' );
