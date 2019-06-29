@@ -11,12 +11,41 @@ namespace GenesisGenerator;
  * The WP_CLI Command class
  */
 class Command {
-
+	/**
+	 * Argument passed in as $args
+	 *
+	 * @var string
+	 */
 	protected $slug;
-	protected $theme_name = [];
+	/** 
+	 * Empty array that holds transformed slug and other replacements
+	 * 
+	 * @var array
+	 */
+	protected $replace = [];
+	/**
+	 * File path to extract to
+	 *
+	 * @var string
+	 */
 	protected $path;
+	/**
+	 * Author from $assoc_args
+	 *
+	 * @var string
+	 */
 	protected $author;
+	/**
+	 * URI of plugin
+	 *
+	 * @var [type]
+	 */
 	protected $uri;
+	/**
+	 * Handle of the zip file
+	 *
+	 * @var Zipper
+	 */
 	private $file;
 
 
@@ -58,12 +87,12 @@ class Command {
 		// Make sure our file exists before continuing on.
 		if ( file_exists( $this->path ) ) {
 			\WP_CLI::log( 'Folder exists. Continuing.' );
-			$this->theme_name = $this->split( $this->slug );
+			$this->replace = $this->split( $this->slug );
 			// Add StudioPress and studiopress.com to array to search and replace.
-			$this->theme_name['author'] = $this->author;
-			$this->theme_name['uri']    = $this->uri;
+			$this->replace['author'] = $this->author;
+			$this->replace['uri']    = $this->uri;
 			// Call our Iterator to open the files and perform the string replace.
-			new Iterator( $this->theme_name, $this->path );
+			new Iterator( $this->replace, $this->path );
 
 		}
 
@@ -73,7 +102,7 @@ class Command {
 	 * Returns an array for slug, full
 	 *
 	 * @param string $slug The slug to pass in.
-	 * @return array An array of each variation of the slug for replcaements
+	 * @return array An array of each variation of the slug for replacements
 	 */
 	private function split( string $slug ) {
 		$new['slug']       = $slug;
