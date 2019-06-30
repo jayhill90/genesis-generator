@@ -37,7 +37,10 @@ class Zipper {
 	 * @param string $slug The folder name to save the theme into.
 	 */
 	public function __construct( $slug ) {
-		$version = new Version();
+		// Get version string of Genesis
+		$version = wp_get_theme( 'genesis' );
+		$version = $version->get( 'Version' );
+		// Get Genesis Sample corresponding version
 		$this->genesis = 'https://github.com/studiopress/genesis-sample/archive/' . $version . '.zip';
 		$zip = new \ZipArchive();
 
@@ -50,7 +53,7 @@ class Zipper {
 		if ( $result ) {
 			$zip->extractTo( get_theme_root() );
 			$zip->close();
-			$rename = rename( get_theme_root() . '/genesis-sample-master', get_theme_root() . '/' . $slug );
+			$rename = rename( get_theme_root() . '/genesis-sample-' . $version, get_theme_root() . '/' . $slug );
 			if ( ! $rename ) {
 				return \WP_CLI::error( 'Failed to rename temp directory' );
 
