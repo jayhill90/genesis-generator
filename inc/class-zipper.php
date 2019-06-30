@@ -23,7 +23,7 @@ class Zipper {
 	 *
 	 * @var string
 	 */
-	private $genesis = 'https://github.com/studiopress/genesis-sample/archive/master.zip';
+	private $genesis;
 	/**
 	 * Temp folder to copy to bdfore extracting
 	 *
@@ -37,6 +37,8 @@ class Zipper {
 	 * @param string $slug The folder name to save the theme into.
 	 */
 	public function __construct( $slug ) {
+		$version = new Version();
+		$this->genesis = 'https://github.com/studiopress/genesis-sample/archive/' . $version . '.zip';
 		$zip = new \ZipArchive();
 
 		if ( ! copy( $this->genesis, $this->tmp ) ) {
