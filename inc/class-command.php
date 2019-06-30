@@ -18,19 +18,20 @@ class Command {
 	 * @var array
 	 */
 	protected $replace = [];
+
 	/**
 	 * File path to extract to
 	 *
 	 * @var string
 	 */
 	protected $path;
+
 	/**
 	 * Handle of the zip file
 	 *
 	 * @var Zipper
 	 */
 	private $file;
-
 
 	/**
 	 * Scaffolds the Genesis Sample theme
@@ -80,9 +81,13 @@ class Command {
 		$this->replace['author']      = sanitize_text_field( $assoc_args['author'] );
 		$this->replace['description'] = sanitize_text_field( $assoc_args['description'] );
 		$this->replace['theme_uri']   = sanitize_text_field( $assoc_args['theme_uri'] );
-		// Extract The Genesis Sample zip file into /tmp/<theme-slug>.
-		$this->file = new Zipper( $this->replace['slug'] );
 		$this->path = get_theme_root() . '/' . $this->replace['slug'];
+		if ( file_exists( $this->path )){
+			\WP_CLI::error( 'Theme ' . $this->replace['slug'] . ' already exists.' );
+		}
+		// Extract The Genesis Sample zip file into theme root slug.
+		$this->file = new Zipper( $this->replace['slug'] );
+		
 
 		// Make sure our file exists before continuing on.
 		if ( file_exists( $this->path ) ) {
