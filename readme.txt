@@ -35,6 +35,8 @@ Open up WP CLI and run a version of:
 
 
 == Changelog ==
+= 0.4.1 =
+Added functionality to download Genesis Sample based on installed Genesis version
 
 = 0.4.0 = 
 Added theme_uri author_uri description and other args for command.
