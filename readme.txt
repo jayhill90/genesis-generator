@@ -35,6 +35,9 @@ Open up WP CLI and run a version of:
 
 
 == Changelog ==
+= 0.4.2 = 
+Fixed some missing replacement strings.
+
 = 0.4.1 =
 Added functionality to download Genesis Sample based on installed Genesis version
 
