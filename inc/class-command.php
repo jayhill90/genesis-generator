@@ -75,12 +75,16 @@ class Command {
 	 * @param array $assoc_args options for the command to be ran.
 	 */
 	public function __invoke( $args, $assoc_args ) {
-
+		// Geneis-Sample related strings created by split function.
 		$this->replace                = $this->split( sanitize_text_field( $args[0] ) );
+
+		//Non Genesis-Sample related strings.
 		$this->replace['uri']         = sanitize_text_field( $assoc_args['uri'] );
 		$this->replace['author']      = sanitize_text_field( $assoc_args['author'] );
 		$this->replace['description'] = sanitize_text_field( $assoc_args['description'] );
 		$this->replace['theme_uri']   = sanitize_text_field( $assoc_args['theme_uri'] );
+
+		// Check whether the child theme folder already exists.
 		$this->path = get_theme_root() . '/' . $this->replace['slug'];
 		if ( file_exists( $this->path )){
 			\WP_CLI::error( 'Theme ' . $this->replace['slug'] . ' already exists.' );
@@ -109,6 +113,9 @@ class Command {
 		$slug              = preg_split( '/\-/', $slug );
 		$new['full']       = ucwords( implode( ' ', $slug ) );
 		$new['underscore'] = implode( '_', $slug );
+		$new['landing']    = ucfirst( implode( ' ', $slug ) );
+		$new['single']     = ucwords( implode( '', $slug ) );
+		$new['upper']      = ucwords( implode( '-', $slug ) );
 		return $new;
 	}
 
