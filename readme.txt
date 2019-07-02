@@ -20,19 +20,23 @@ Currently this only supports Genesis/Genesis Sample 3.0.1. If you're running 2.1
 I value feedback so if there's anything amiss feel free to open up an issue or hit me on twitter @wpdevlife. 
 
 == Installation ==
+Ensure the Genesis Framework is installed.
 Git clone this repo or download as zip to your plugins folder.
 Activate the plugin.
-Open up WP CLI and run a version of: 
+Open up WP-CLI and run the wp scaffold genesis command. 
 
-`wp scaffold genesis my-theme --author="Jay Hill" --uri="wpdev.life" --description="My awesome theme" --theme_uri="testinproduction.systems"`
+ex: wp scaffold genesis my-theme --author="Jay Hill" --uri="wpdev.life" --description="My awesome theme" --theme_uri="testinproduction.systems"
+
+Once complete, you can switch to your new theme with wp theme activate my-theme and begin development work.
 
 == Frequently Asked Questions ==
 
-
+Does this pull Genesis themes like Academy Pro or another StudioPress theme?
+    This will scaffold a new theme based on Genesis Sample and make the replacements to update Genesis Sample references.
 
 == Screenshots ==
 
-
+Soon.
 
 == Changelog ==
 = 0.4.2 = 
